@@ -1,0 +1,31 @@
+.search {
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.search-dictionary {
+  width: 1000px;
+  height: 50px;
+  font-size: 20px;
+  padding: 1rem;
+  border: none;
+  border-radius: 16px;
+  background: var(--F4F4F4, #f4f4f4);
+}
+
+input::placeholder {
+  font-size: 20px;
+  color: var(---color3--);
+  opacity: 0.25;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
