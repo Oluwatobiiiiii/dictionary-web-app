@@ -1,0 +1,21 @@
+.result {
+  margin: 1rem;
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+
+/* .word {
+  display: grid;
+} */
+
+.word {
+  grid-column: 2;
+}
+
+.pronunciation {
+  grid-column: 9;
+  margin-left: auto;
+}

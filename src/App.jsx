@@ -10,26 +10,37 @@ import "ldrs/metronome";
 const App = () => {
   const [font, setFont] = useState("Sans-Serif");
   const [search, setSearch] = useState("");
-  const [word, setWord] = useState("");
+  const [word, setWord] = useState([]);
   const [error, setError] = useState("");
-  const [loader, setLoader] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  function updateWord() {}
+
   useEffect(
     function () {
+      const controller = new AbortController();
       async function searchDictionary() {
+        setLoading(true);
         try {
           const data = await fetch(
-            `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`,
+            { signal: controller.abort() }
           );
           const result = await data.json();
-          console.log(result);
           setWord(result);
         } catch (Error) {
-          console.error(Error);
           setError(Error);
+          console.log(error);
+        } finally {
+          setLoading(false);
         }
       }
 
       searchDictionary();
+
+      return function () {
+        controller.abort();
+      };
     },
     [search]
   );
@@ -40,9 +51,16 @@ const App = () => {
 
       <Search search={search} setSearch={setSearch} />
 
-      <l-metronome size="40" speed="1.6" color="black"></l-metronome>
-
-      <Result />
+      {isLoading ? (
+        <l-metronome
+          class="loading"
+          size="40"
+          speed="1.6"
+          color="#a445ed"
+        ></l-metronome>
+      ) : (
+        <Result word={word} error={error} />
+      )}
     </div>
   );
 };

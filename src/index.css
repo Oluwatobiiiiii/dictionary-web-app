@@ -29,3 +29,10 @@ body {
   justify-content: center;
   margin: 2rem;
 } */
+
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: 50%;
+}
