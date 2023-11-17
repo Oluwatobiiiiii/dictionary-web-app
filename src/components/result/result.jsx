@@ -8,7 +8,7 @@ const Result = ({ word }) => {
     <div className="result">
       <div className="heading">
         <div className="word">
-          <h1>{word[0].word}</h1>
+          <h1>{word.word}</h1>
           <p>{word.phonetic}</p>
         </div>
 

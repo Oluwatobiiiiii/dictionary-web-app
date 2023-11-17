@@ -1,9 +1,9 @@
 import "./index.css";
 import Navbar from "./components/navbar/navbar";
 import Search from "./components/search/search";
-import Result from "./components/result/result";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "ldrs/metronome";
+import Dictionary from "./components/dictionary/dictionary";
 
 // Default values shown
 
@@ -14,42 +14,46 @@ const App = () => {
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  function updateWord() {}
-
-  useEffect(
-    function () {
-      const controller = new AbortController();
-      async function searchDictionary() {
-        setLoading(true);
-        try {
-          const data = await fetch(
-            `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`,
-            { signal: controller.abort() }
-          );
-          const result = await data.json();
-          setWord(result);
-        } catch (Error) {
-          setError(Error);
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
+  function submitRequest(e) {
+    e.preventDefault();
+    const controller = new AbortController();
+    async function searchDictionary() {
+      setLoading(true);
+      try {
+        const data = await fetch(
+          `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`,
+          { signal: controller.abort() }
+        );
+        const result = await data.json();
+        setWord(result);
+      } catch (Error) {
+        setError(Error);
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
 
-      searchDictionary();
+      if (search.length < 2) {
+        setWord([]);
+        setError("");
+      }
+    }
 
-      return function () {
-        controller.abort();
-      };
-    },
-    [search]
-  );
+    searchDictionary();
 
+    return function () {
+      controller.abort();
+    };
+  }
   return (
     <div className="app">
       <Navbar font={font} setFont={setFont} />
 
-      <Search search={search} setSearch={setSearch} />
+      <Search
+        search={search}
+        submitRequest={submitRequest}
+        setSearch={setSearch}
+      />
 
       {isLoading ? (
         <l-metronome
@@ -59,7 +63,7 @@ const App = () => {
           color="#a445ed"
         ></l-metronome>
       ) : (
-        <Result word={word} error={error} />
+        <Dictionary word={word} error={error} />
       )}
     </div>
   );

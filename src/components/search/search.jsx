@@ -1,18 +1,15 @@
 /* eslint-disable react/prop-types */
 import "./search.css";
 
-const Search = ({ search, setSearch }) => {
-  function onClick(e) {
-    e.preventDefault();
-  }
+const Search = ({ search, setSearch, submitRequest }) => {
   return (
     <div className="search">
-      <form onSubmit={onClick}>
+      <form onSubmit={submitRequest}>
         <input
           className="search-dictionary"
           type="text"
           placeholder="Search for any word…"
-          onChange={(e) => onClick(setSearch(e.target.value))}
+          onChange={(e) => setSearch(e.target.value)}
           value={search}
         />
       </form>
