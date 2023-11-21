@@ -19,24 +19,42 @@ const Result = ({ word }) => {
 
       <div className="word-meanings">
         <div className="meaning-1">
-          <h3 className="part-of-speech-1">Noun</h3>
-          <div className="meanings">
-            <p>Meaning</p>
-          </div>
+          {word.meanings.map((meaning) => (
+            <>
+              <div className="part">
+                <h3 className="part-of-speech-1">{meaning.partOfSpeech}</h3>
+                <div className="line"></div>
+              </div>
+              <div className="meanings">
+                <p>Meaning</p>
+                <ul className="definitions-1">
+                  {meaning.definitions.map((definitions) => (
+                    <li key={definitions}>{definitions.definition}</li>
+                  ))}
+                </ul>
+              </div>
+              {meaning.synonyms.length > 0 && (
+                <div className="synonyms">
+                  <h3>Synonyms</h3>
+                  <p>
+                    {meaning.synonyms.map((s) => (
+                      <p key={s}>{s}</p>
+                    ))}
+                  </p>
+                </div>
+              )}
+            </>
+          ))}
         </div>
 
-        <div className="meaning-2">
-          <h3>Verb</h3>
-          <div className="meanings">
-            <p>Meaning</p>
-            {}
-          </div>
+        <div className="source">
+          <h6>Source</h6>
+          <p>
+            <a className="source-link" target="blank" href={word.sourceUrls}>
+              {word.sourceUrls}
+            </a>
+          </p>
         </div>
-      </div>
-
-      <div className="source">
-        <h6>Source</h6>
-        <p>ddneudhouen</p>
       </div>
     </div>
   );

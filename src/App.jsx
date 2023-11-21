@@ -4,6 +4,7 @@ import Search from "./components/search/search";
 import { useState } from "react";
 import "ldrs/metronome";
 import Dictionary from "./components/dictionary/dictionary";
+import CodingNinja from "./components/coding-ninja 🥷🏾/coding-ninja";
 
 // Default values shown
 
@@ -65,6 +66,7 @@ const App = () => {
       ) : (
         <Dictionary word={word} error={error} />
       )}
+      <CodingNinja />
     </div>
   );
 };

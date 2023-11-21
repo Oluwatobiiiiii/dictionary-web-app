@@ -1,0 +1,9 @@
+.coding-ninja {
+  display: flex;
+  justify-content: center;
+}
+
+.treasure {
+  color: var(---color9--);
+  text-decoration: none;
+}
