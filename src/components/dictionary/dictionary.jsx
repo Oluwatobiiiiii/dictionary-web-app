@@ -4,8 +4,8 @@ import Result from "../result/result";
 const Dictionary = ({ word }) => {
   return (
     <div>
-      {word.map((word) => (
-        <Result word={word} key={word} />
+      {word.map((word, key) => (
+        <Result word={word} key={key} />
       ))}
     </div>
   );

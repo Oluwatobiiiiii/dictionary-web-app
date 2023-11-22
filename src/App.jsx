@@ -4,9 +4,8 @@ import Search from "./components/search/search";
 import { useState } from "react";
 import "ldrs/metronome";
 import Dictionary from "./components/dictionary/dictionary";
+import Error from "./components/error/error";
 import CodingNinja from "./components/coding-ninja 🥷🏾/coding-ninja";
-
-// Default values shown
 
 const App = () => {
   const [font, setFont] = useState("Sans-Serif");
@@ -21,22 +20,27 @@ const App = () => {
     async function searchDictionary() {
       setLoading(true);
       try {
-        const data = await fetch(
-          `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`,
-          { signal: controller.abort() }
+        const response = await fetch(
+          `https://api.dictionaryapi.dev/api/v2/entries/en/${search}`
         );
-        const result = await data.json();
-        setWord(result);
-      } catch (Error) {
-        setError(Error);
-        console.log(error);
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw {
+            errorData,
+          };
+        }
+
+        const data = await response.json();
+        setWord(data);
+        setSearch("");
+        setError("");
+      } catch (error) {
+        setError(error.errorData);
+        setWord([]);
+        console.error(error);
       } finally {
         setLoading(false);
-      }
-
-      if (search.length < 2) {
-        setWord([]);
-        setError("");
       }
     }
 
@@ -64,8 +68,19 @@ const App = () => {
           color="#a445ed"
         ></l-metronome>
       ) : (
-        <Dictionary word={word} error={error} />
+        <Dictionary word={word} />
       )}
+      {isLoading && (
+        <l-metronome
+          class="loading"
+          size="40"
+          speed="1.6"
+          color="#a445ed"
+        ></l-metronome>
+      )}
+
+      {!isLoading && !error && <Dictionary word={word} />}
+      {error && <Error error={error} />}
       <CodingNinja />
     </div>
   );

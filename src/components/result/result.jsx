@@ -2,8 +2,6 @@
 import "./result.css";
 
 const Result = ({ word }) => {
-  console.log(word);
-
   return (
     <div className="result">
       <div className="heading">
@@ -16,31 +14,30 @@ const Result = ({ word }) => {
           <img src="/src/assets/images/icon-play.svg" alt="play-icon" />
         </div>
       </div>
-
       <div className="word-meanings">
         <div className="meaning-1">
-          {word.meanings.map((meaning) => (
+          {word.meanings.map((meaning, key) => (
             <>
-              <div className="part">
+              <div className="part" key={key}>
                 <h3 className="part-of-speech-1">{meaning.partOfSpeech}</h3>
                 <div className="line"></div>
               </div>
               <div className="meanings">
                 <p>Meaning</p>
                 <ul className="definitions-1">
-                  {meaning.definitions.map((definitions) => (
-                    <li key={definitions}>{definitions.definition}</li>
+                  {meaning.definitions.map((definitions, key) => (
+                    <li key={key}>
+                      {definitions.definition}
+                      <span>{definitions.example}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
+
               {meaning.synonyms.length > 0 && (
                 <div className="synonyms">
                   <h3>Synonyms</h3>
-                  <p>
-                    {meaning.synonyms.map((s) => (
-                      <p key={s}>{s}</p>
-                    ))}
-                  </p>
+                  <p>{meaning.synonyms.join(", ")}</p>
                 </div>
               )}
             </>
