@@ -1,5 +1,5 @@
 .result {
-  margin: 1rem;
+  margin-top: 1rem;
   display: grid;
 }
 
@@ -17,6 +17,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+  color: var(---color2--);
 }
 
 .word > p {
@@ -40,6 +41,7 @@
 .meaning-1 {
   grid-column: 2/10;
   margin: 2rem 0 2rem 0;
+  color: var(---color2--);
 }
 
 .part-of-speech-1 {

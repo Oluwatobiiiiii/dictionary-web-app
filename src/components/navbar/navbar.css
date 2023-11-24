@@ -23,6 +23,7 @@
   width: 150px;
   color: var(--white--);
   position: relative;
+  z-index: 1;
 }
 
 .dropdown .dropdown-btn {
@@ -36,6 +37,8 @@
   border-radius: 5px;
   cursor: pointer;
   height: 50px;
+  color: var(---color2--);
+  z-index: 1000;
 }
 
 .dropdown .dropdown-content {
@@ -48,10 +51,13 @@
   width: 100%;
   border-radius: 5px;
   cursor: pointer;
+  background-color: var(---color11--);
+  color: var(---color2--);
 }
 
 .dropdown .dropdown-content .dropdown-item {
   padding: 15px;
   transition: all 0.2s;
   cursor: pointer;
+  color: var(---color2--);
 }

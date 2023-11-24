@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import "./result.css";
+import useSound from "use-sound";
 
-const Result = ({ word }) => {
+const Result = ({ word, font }) => {
+  const [playSound] = useSound(word.phonetics[1]?.audio);
   return (
-    <div className="result">
+    <div className="result" style={{ fontFamily: font }}>
       <div className="heading">
         <div className="word">
           <h1>{word.word}</h1>
@@ -11,7 +13,11 @@ const Result = ({ word }) => {
         </div>
 
         <div className="pronunciation">
-          <img src="/src/assets/images/icon-play.svg" alt="play-icon" />
+          <img
+            onClick={playSound}
+            src="/src/assets/images/icon-play.svg"
+            alt="play-icon"
+          />
         </div>
       </div>
       <div className="word-meanings">

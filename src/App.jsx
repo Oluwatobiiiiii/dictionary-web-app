@@ -14,6 +14,24 @@ const App = () => {
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
+  const setDarkMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "dark");
+  };
+
+  const setLightMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "light");
+  };
+
+  const ToggleTheme = (e) => {
+    if (e.target.checked) {
+      setLightMode();
+    } else {
+      setDarkMode();
+    }
+  };
+
+  setLightMode();
+
   function submitRequest(e) {
     e.preventDefault();
     const controller = new AbortController();
@@ -33,6 +51,7 @@ const App = () => {
 
         const data = await response.json();
         setWord(data);
+        console.log(data);
         setSearch("");
         setError("");
       } catch (error) {
@@ -52,7 +71,7 @@ const App = () => {
   }
   return (
     <div className="app">
-      <Navbar font={font} setFont={setFont} />
+      <Navbar font={font} setFont={setFont} ToggleTheme={ToggleTheme} />
 
       <Search
         search={search}
@@ -68,7 +87,7 @@ const App = () => {
           color="#a445ed"
         ></l-metronome>
       ) : (
-        <Dictionary word={word} />
+        <Dictionary word={word} font={font} />
       )}
       {isLoading && (
         <l-metronome

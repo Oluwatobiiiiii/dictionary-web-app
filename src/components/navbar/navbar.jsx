@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import "./navbar.css";
-const fonts = ["Sans Serif", "Serif", "Mono"];
+const fonts = ["Sans Serif", "Serif", "Inconsolata"];
 
-const Navbar = ({ font, setFont }) => {
+const Navbar = ({ font, setFont, ToggleTheme }) => {
   const [isActive, setActive] = useState(false);
   return (
     <div className="navbar">
@@ -63,7 +63,11 @@ const Navbar = ({ font, setFont }) => {
             <div className="circle"></div>
           </div>
 
-          <img src="src/assets/images/icon-moon.svg" alt="moon" />
+          <img
+            src="src/assets/images/icon-moon.svg"
+            alt="moon"
+            onClick={ToggleTheme}
+          />
         </div>
       </div>
     </div>

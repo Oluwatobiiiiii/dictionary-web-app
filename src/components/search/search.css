@@ -1,17 +1,16 @@
 .search {
-  margin: 2rem;
-  display: flex;
-  justify-content: center;
+  position: relative;
+  display: grid;
+  margin-top: 3.25rem;
 }
 
 .search-dictionary {
-  width: 1000px;
-  height: 50px;
   font-size: 20px;
-  padding: 1rem;
-  border: none;
-  border-radius: 16px;
-  background: var(--F4F4F4, #f4f4f4);
+  background: var(---color7--);
+  padding-block: 1.25rem;
+  padding-inline: 1.5rem;
+  border-radius: 1rem;
+  border: 0;
 }
 
 input::placeholder {
@@ -28,4 +27,14 @@ input::placeholder {
 textarea:focus,
 input:focus {
   outline: none;
+  border: #a445ed 1px solid;
+}
+
+.search-icon {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  top: 1.3rem;
+  bottom: 0rem;
+  right: 0.5rem;
 }
