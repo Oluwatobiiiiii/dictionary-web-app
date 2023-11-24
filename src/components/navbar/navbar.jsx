@@ -39,7 +39,7 @@ const Navbar = ({ font, setFont, ToggleTheme }) => {
         <div className="dropdown">
           <div className="dropdown-btn" onClick={() => setActive(!isActive)}>
             {font}
-            <img src="./assets/images/icon-arrow-down.svg" alt="dropdown" />
+            <img src="images/icon-arrow-down.svg" alt="dropdown" />
           </div>
           {isActive && (
             <div className="dropdown-content">
@@ -63,11 +63,7 @@ const Navbar = ({ font, setFont, ToggleTheme }) => {
             <div className="circle"></div>
           </div>
 
-          <img
-            src="./assets/images/icon-moon.svg"
-            alt="moon"
-            onClick={ToggleTheme}
-          />
+          <img src="images/icon-moon.svg" alt="moon" onClick={ToggleTheme} />
         </div>
       </div>
     </div>
