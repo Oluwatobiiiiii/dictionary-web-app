@@ -13,11 +13,7 @@ const Result = ({ word, font }) => {
         </div>
 
         <div className="pronunciation">
-          <img
-            onClick={playSound}
-            src="/src/assets/images/icon-play.svg"
-            alt="play-icon"
-          />
+          <img onClick={playSound} src="images/icon-play.svg" alt="play-icon" />
         </div>
       </div>
       <div className="word-meanings">
